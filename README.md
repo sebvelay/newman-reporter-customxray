@@ -4,7 +4,7 @@ It display the result of the test on xray for 1 test for a complete collection, 
 
 It's a fork of [newman Junit XRAY](https://www.npmjs.com/package/newman-reporter-junitxray) reporter.
 
-# example
+# Demo
 
 The generation of the xml look like :
 
@@ -21,6 +21,18 @@ The generation of the xml look like :
     </testcase>
   </testsuite>
 </testsuites>
+```
+
+The result of xray of multiples generation look like :
+
+![](xray.png)
+
+To upload on xray, you can use this curl command :
+
+```console
+content=$(cat result/xray/result.xml)"
+
+curl -X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/xml' --data-raw '$content' '${baseUrl}/api/v2/import/execution/junit?testExecKey=${testExecutionKey}'\"
 ```
 
 

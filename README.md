@@ -4,6 +4,25 @@ It display the result of the test on xray for 1 test for a complete collection, 
 
 It's a fork of [newman Junit XRAY](https://www.npmjs.com/package/newman-reporter-junitxray) reporter.
 
+# example
+
+The generation of the xml look like :
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1">
+  <testsuite name="COLLECTION-NAME" tests="11" timestamp="2022-09-06T10:14:11.848" failures="1">
+    <testcase classname="CollectionName" name="COLLECTION-NAME">
+      <failure type="AssertionFailure" message="expected response to have status code 302 but got 200">
+        <![CDATA[Error message: expected response to have status code 302 but got 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 302 but got 200
+   at Object.eval sandbox-script.js:1:11).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>
+```
+
 
 ## Install
 > The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local installation)

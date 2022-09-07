@@ -46,14 +46,22 @@ CustomXrayReporter = function(newman, reporterOptions) {
 
         var failures = _.get(newman, "summary.run.failures")
         var countFailure = 0;
+        var failure = null;
+        var contentFailure = "";
         _.forEach(failures,function (err){
-            var failure = testCase.ele("failure");
-            failure.att("type","AssertionFailure");
-            failure.att("message", err.error.message);
-            failure.dat("Error message: " + err.error.message + ".");
-            failure.dat("Stacktrace: " + err.error.stack + ".");
             countFailure++;
+            if(failure===null){
+                failure = testCase.ele("failure");
+                failure.att("type","AssertionFailure");
+            }
+            contentFailure+=countFailure+". " + err.error.message+SEPARATOR;
+            
         });
+
+        if(failure!=null){
+            failure.dat(contentFailure);
+        }
+
         testSuite.att("failures",countFailure);
 
         newman.exports.push({

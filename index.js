@@ -54,7 +54,7 @@ CustomXrayReporter = function(newman, reporterOptions) {
                 failure = testCase.ele("failure");
                 failure.att("type","AssertionFailure");
             }
-            contentFailure+=countFailure+". " + err.parent.name + " "+ err.source.name+" "+ err.error.message+" "+SEPARATOR;
+            contentFailure+=countFailure+". " + err.source.name+" => "+ err.error.message+" "+SEPARATOR;
             
         });
 
